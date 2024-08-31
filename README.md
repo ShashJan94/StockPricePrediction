@@ -1,7 +1,3 @@
-I apologize for the confusion earlier. Here is the README with proper markdown using the GitHub-flavored markdown syntax:
-
----
-
 # Stock Price Prediction Application
 
 ## Overview
