@@ -18,7 +18,7 @@
             <div class="col-md-5">
                 <div class="card shadow-sm mb-4">
                     <div class="card-body">
-                        <form id="predictionForm" action="/predict" method="POST" enctype="multipart/form-data">
+                        <form id="predictionForm" action="/" method="POST" enctype="multipart/form-data">
                             <div class="mb-3">
                                 <label for="stockSymbol" class="form-label">Stock Symbol</label>
                                 <input type="text" class="form-control" id="stockSymbol" name="stock_symbol" placeholder="e.g., AAPL, GOOG" required>
@@ -87,13 +87,14 @@
                 </div>
 
                 <!-- Section to download the generated test dataset -->
+                {% if test_data_url %}
                 <div class="card shadow-sm mb-4" id="downloadSampleSection">
                     <div class="card-body text-center">
                         <h2 class="h5 mb-3">Download Test Data</h2>
                         <a href="{{ test_data_url }}" class="btn btn-outline-secondary w-100" download>Download Generated Test Data</a>
                     </div>
                 </div>
-
+                {% endif %}
                 <!-- Section to upload the test dataset for predictions -->
                 <div class="card shadow-sm">
                     <div class="card-body">
@@ -116,10 +117,10 @@
                     <div class="card-body">
                         <h2 class="h5">Model Metrics</h2>
                         <div id="metrics" class="p-3 bg-light rounded">
-                            <p>Accuracy: {{ accuracy }}</p>
-                            <p>Loss: {{ loss }}</p>
                             <p>MSE: {{ mse }}</p>
                             <p>RMSE: {{ rmse }}</p>
+                            <p>MAE: {{ mae }}</p>
+                            <p>MAPE: {{ mape }}</p>
                         </div>
                     </div>
                 </div>
@@ -130,7 +131,11 @@
                         <h2 class="h5">Comparison of Train and Test Data</h2>
                         <div id="comparison" class="p-3 bg-light rounded">
                             <!-- Placeholder for charts comparing train and test data -->
-                            <img src="{{ url_for('static', filename='images/train_test_comparison.png') }}" class="img-fluid rounded" alt="Train vs Test Data Comparison">
+                            {% if graph_paths %}
+                                {% for graph_path in graph_paths %}
+                                    <img src="{{ url_for('static', filename=graph_path.split('static/')[1]) }}" class="img-fluid rounded mb-3" alt="Graph">
+                                {% endfor %}
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -140,13 +145,26 @@
                     <div class="card-body">
                         <h2 class="h5">Prediction Results from Uploaded Test Data</h2>
                         <div id="results" class="p-3 bg-light rounded">
-                            <!-- Predicted results will be displayed here -->
+                            <!-- Predicted and actual results will be displayed here -->
                             {% if test_data_predictions %}
-                                <ul>
-                                    {% for prediction in test_data_predictions %}
-                                        <li>{{ prediction }}</li>
-                                    {% endfor %}
-                                </ul>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Actual</th>
+                                            <th>Predicted</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for date, actual, predicted in test_data_predictions %}
+                                            <tr>
+                                                <td>{{ date }}</td>
+                                                <td>{{ actual }}</td>
+                                                <td>{{ predicted }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
                             {% else %}
                                 <p>No test data predictions available.</p>
                             {% endif %}
@@ -156,6 +174,7 @@
             </div>
         </div>
     </div>
+
     <!-- Toast Notification Container -->
     <div aria-live="polite" aria-atomic="true" class="position-relative">
         <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1055;">

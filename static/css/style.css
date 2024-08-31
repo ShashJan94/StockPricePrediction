@@ -1,0 +1,132 @@
+/* Global Styles */
+body {
+    background: linear-gradient(to right, #e0eafc, #cfdef3);
+    font-family: 'Poppins', sans-serif;
+    color: #343a40;
+    line-height: 1.6;
+}
+
+h1, h2 {
+    color: #495057;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 1.5rem;
+    text-transform: capitalize;
+}
+
+/* Card Styling */
+.card {
+    border: none;
+    border-radius: 15px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* Form Styling */
+.form-control {
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    padding: 12px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+}
+
+.form-label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #6c757d;
+}
+
+/* Buttons */
+.btn-gradient {
+    background: linear-gradient(to right, #007bff, #0056b3);
+    border: none;
+    color: #ffffff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.btn-gradient:hover {
+    background: linear-gradient(to right, #0056b3, #003a75);
+    transform: translateY(-2px);
+}
+
+.btn-gradient:active {
+    background: linear-gradient(to right, #003a75, #00234c);
+    transform: translateY(0px);
+}
+
+.btn-outline-secondary {
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 1rem;
+}
+
+/* Right Column Content */
+#metrics, #comparison, #results {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+#metrics h2, #comparison h2, #results h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #343a40;
+    margin-bottom: 1rem;
+}
+
+#metrics p, #comparison p, #results p {
+    font-size: 1rem;
+    color: #495057;
+    margin-bottom: 0.5rem;
+}
+
+/* Image Styling */
+#comparison img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1, h2 {
+        font-size: 1.5rem;
+    }
+
+    form {
+        padding: 20px;
+    }
+
+    button.btn-gradient, .btn-outline-secondary {
+        font-size: 1rem;
+        padding: 10px 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    form {
+        padding: 15px;
+    }
+
+    button.btn-gradient, .btn-outline-secondary {
+        font-size: 0.9rem;
+        padding: 8px 10px;
+    }
+}
