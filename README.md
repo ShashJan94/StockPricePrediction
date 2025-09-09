@@ -73,9 +73,6 @@ This Stock Price Prediction Application allows users to predict future stock pri
 4. **View Results**: After prediction, view the metrics, graphs, and predictions.
 5. **Test New Data**: Upload a new dataset for prediction and view the results.
 
-## Screenshots
-
-Include relevant screenshots of the application in action.
 
 ## Contributing
 
